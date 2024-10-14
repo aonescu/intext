@@ -1,0 +1,11 @@
+The user intent is to: {intent()}
+
+The user context: {context()}
+
+The world is: 
+
+The available options are:
+
+Choose the appropriate action from list:
+
+The final action built from action in workflows:

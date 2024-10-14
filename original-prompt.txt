@@ -1,0 +1,15 @@
+
+
+You are responsible for generating a snapshot that matches a users intent with the context in which he is.
+
+
+Initial intent - {parse_intent()} - Context - {parse_context}
+
+List of the available agents: 
+
+1)Agent that exposes his options
+2)Agent that exposes his options
+3)Agent that exposes his options
+.........
+n)Agent that exposes his options
+
