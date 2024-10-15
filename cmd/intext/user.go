@@ -3,5 +3,6 @@ package main
 
 
 type UserIntent struct {
-	intent string
+    // Define any fields needed for user intent
+    rawIntent string
 }

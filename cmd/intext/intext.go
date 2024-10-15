@@ -1,13 +1,17 @@
 package main
 
 func main() {
-    engine := IntextEngine{
-        agent: Agent{},
-        description: UniversalDescription{
-            intent: UserIntent{intent: "example"},
-            description: "example description",
-        },
+    userIntent := UserIntent{rawIntent: "Test Intent"}
+    description := UniversalDescription{
+        intent:      userIntent,
+        description: "Sample Description",
     }
+
+    engine := IntextEngine{
+        agent:       Agent{},
+        description: description,
+    }
+
     engine.Start()
     engine.Process()
 }

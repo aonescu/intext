@@ -3,26 +3,32 @@ package main
 import (
 	"os"
 	"log"
+	"fmt"
 )
 
+
 type UniversalDescription struct {
-    intent UserIntent
+    intent      UserIntent
     description string
 }
 
+
 type IntextEngine struct {
-    agent Agent
+    agent       Agent
     description UniversalDescription
 }
 
+// Start the engine
 func (e *IntextEngine) Start() {
-    // Start the engine
+    fmt.Println("Engine started")
 }
 
+// Action represents an action the agent should take
 type Action struct {
     name string
 }
 
+// Read the original intext prompt from file
 func getOriginalIntext() string {
     data, err := os.ReadFile("/Users/alex/intext/cmd/intext/original-prompt.txt")
     if err != nil {
@@ -31,28 +37,36 @@ func getOriginalIntext() string {
     return string(data)
 }
 
-// Generic function to prompt the agent
-func promptAgent() {}
-
-// Original intext looks at the starting one how it proposes to match with the new one.
-func combineIntext() string {
-    // o := getOriginalIntext()
-    return "New intext"
+// Placeholder for prompting the agent
+func promptAgent(description string) {
+    fmt.Println("Prompting agent with description:", description)
 }
 
+// Combine original intext with new information
+func combineIntext(original string, newText string) string {
+    return original + " + " + newText
+}
+
+// Match user descriptions with available actions
 func matchDescriptions(description string, descriptionList []UniversalDescription) string {
-    // Get parsed user intent in to a string that can be used to match from the available actions that llm agents expose 
     for _, d := range descriptionList {
         if d.description == description {
-            desc := combineIntext()
-            return desc
+            // Combine original and new intext
+            originalIntext := getOriginalIntext()
+            combined := combineIntext(originalIntext, d.description)
+            return combined
         }
     }
     return "No match found"
 }
 
+// Process user intent and decide on an action for the agent
 func (e *IntextEngine) Process() {
-    // Process the user intent and generate the action that the agent should take
+    // Match description and generate action
     action := matchDescriptions(e.description.description, []UniversalDescription{e.description})
     e.agent.action = action
+    
+    fmt.Println("Agent action set to:", e.agent.action)
+    // Optionally, prompt the agent
+    promptAgent(e.agent.action)
 }
